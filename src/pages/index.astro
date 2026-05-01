@@ -1,11 +1,117 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro"
 ---
+<Layout title="The Math Calculator by Alexis Ceja">
+    <main class="main-container">
+	   <h1>MATH CALCULATOR</h1>
+	   <p>This calculator has been made by Alexis Ceja.</p>
 
-<Layout>
-	<Welcome />
+        <div class="calculator">
+		  <input type="text" id="screen" disabled>
+		  <div class="grid-buttons">
+	          <button onclick="add('1')">1</button>
+	          <button onclick="add('2')">2</button>
+	          <button onclick="add('3')">3</button>
+	          <button onclick="add('+')">+</button>
+
+			  <button onclick="add('4')">4</button>
+	          <button onclick="add('5')">5</button>
+	          <button onclick="add('6')">6</button>
+	          <button onclick="add('-')">-</button>
+
+
+	          <button onclick="add('7')">7</button>
+	          <button onclick="add('8')">8</button>
+	          <button onclick="add('9')">9</button>
+	          <button onclick="add('*')">*</button>
+
+
+			 <button onclick="add('0')">0</button>
+			 <button onclick="calculate()">=</button>
+			 <button onclick="clean()">C</button>
+			 <button onclick="add('/')">/</button>
+          </div>
+	   </div>
+   </main>
 </Layout>
+
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background-color: #151010;
+		margin: 0;
+		padding: 20px;
+	}
+
+	main {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		min-height: 100vh;
+		justify-content: center;
+	}
+
+	.calculator {
+		margin-top: 2rem;
+		margin-bottom: 4rem;
+	}
+
+	h1 {
+		color: #5ebed8;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 60px;
+	}
+	p {
+		color: #dcd9d9;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 25px;
+	}
+
+	.grid-buttons {
+		display: grid;
+		grid-template-columns: repeat(4, 90px);
+		gap: 10px;
+		justify-content: center;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+	}
+
+	#screen {
+		margin: 25px 30px;
+		width: 300px;
+		height: 75px;
+		font-size: 24px;
+		padding: 10px;
+		background-color: white;
+		text-align: center;
+	}
+</style>
+
+<script>
+    const screen = document.getElementById('screen');
+    const buttons = document.querySelectorAll('.grid-buttons button');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const value = button.innerText;
+
+            if (value === '=') {
+                try {
+                    screen.value = eval(screen.value);
+                } catch {
+                    screen.value = "Error";
+                }
+            } else if (value === 'C') {
+                screen.value = '';
+            } else {
+                screen.value += value;
+            }
+        });
+    });
+</script>
