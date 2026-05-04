@@ -7,7 +7,7 @@ import Layout from "../layouts/Layout.astro"
 	   <p>This calculator has been made by Alexis Ceja.</p>
 
         <div class="calculator">
-		  <input type="text" id="screen" disabled>
+		  <input type="text" id="screen" readonly>
 		  <div class="grid-buttons">
 	          <button onclick="add('1')">1</button>
 	          <button onclick="add('2')">2</button>
@@ -91,8 +91,7 @@ import Layout from "../layouts/Layout.astro"
 		background-color: white;
 		text-align: center;
 	}
-
-	#screen:disabled {
+	#screen:[readonly] {
 		background-color: white !important;
 		color: black;
 		opacity: 1;
